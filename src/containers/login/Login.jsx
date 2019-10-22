@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+// 自动跳转
+import {Redirect} from 'react-router-dom'
 import { Form, Icon, Input, Button } from 'antd';
+// 把 UI 组件 ，包装成 容器函数
+import { connect } from 'react-redux'
 
+// 向 请求函数 传递 username password
+import {loginAsync} from '../../redux/action-creators/user'
 import logo from "./images/logo.png";
 import './login.less';
 
@@ -10,14 +16,16 @@ class Login extends Component {
   
   login = (event)=>{
     event.preventDefault();
-    this.props.form.validateFields( async (err, values)=>{
+    // 对所有表单项进行统一的表单验证
+    this.props.form.validateFields((err, values)=>{
       if (!err) {
         // 校验成功
         const { username, password } = values
-        console.log('提交登陆请求', username, password)
+        
+        // 向请求函数传入 username password
+        this.props.loginAsync(username, password)
       } else {
-        // 校验失败
-        console.log(err)
+       
       }
     })
   }
@@ -39,7 +47,14 @@ class Login extends Component {
   }
 
   render() {
+
+    const { hasLogin } = this.props;
+    if (hasLogin) { // 如果已经登录，自动跳转的 admin 界面
+      return <Redirect to="/"/>
+    }
+
     const { getFieldDecorator } = this.props.form;
+
     return (
       <div className='login'>
         <header className='login_header'>
@@ -89,4 +104,7 @@ class Login extends Component {
   }
 }
 
-export default Form.create()(Login);
+export default connect(
+  state => ({hasLogin: state.user.hasLogin}), // hasLogin 状态改变
+  {loginAsync} // 向 UI 组件 传递请求函数
+)(Form.create()(Login));

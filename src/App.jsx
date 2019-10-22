@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route} from 'react-router-dom'
 
-import Login from './pages/login/Login.jsx'
-import Admin from './pages/admin/Admin.jsx'
+import Login from './containers/login/Login.jsx'
+import Admin from './containers/admin/Admin.jsx'
 
 /*
 应用根组件

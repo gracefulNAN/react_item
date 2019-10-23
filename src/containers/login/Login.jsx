@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import { Form, Icon, Input, Button } from 'antd';
 // 把 UI 组件包装成容器组件
 import { connect } from 'react-redux'
+// 跳转页面
+import {Redirect} from 'react-router-dom'
 
 import logo from './images/logo.png';
 import './login.less';
+import {loginAsync} from '../../redux/action-creators/user'
 
 const { Item } = Form;
 
@@ -14,9 +17,10 @@ class Login extends Component {
     event.preventDefault();
 
     this.props.form.validateFields((errors, values) => {
-      if (!errors) {
+      if (!errors) { // 验证成功发起请求
         const {username, password} = values
         console.log(username,password);
+        this.props.loginAsync(username, password);
       } else {
         
       }
@@ -39,6 +43,12 @@ class Login extends Component {
   }
 
   render() {
+
+    const {hasLogin} = this.props;
+    if (hasLogin) { // 如果已经登陆, 自动跳转到admin界面
+      return <Redirect to="/"/>
+    }
+
     const { getFieldDecorator } = this.props.form;
     return (
       <div className='login'>
@@ -87,4 +97,7 @@ class Login extends Component {
     )
   }
 }
-export default connect()(Form.create()(Login));
+export default connect(
+  state => ({hasLogin: state.user.hasLogin})
+  ,{loginAsync}
+  )(Form.create()(Login));

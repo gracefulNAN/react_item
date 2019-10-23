@@ -10,4 +10,7 @@ module.exports = override(
     javascriptEnabled: true,
     modifyVars: {'@primary-color': '#1DA57A'},
   }),
+
+  // 添加装饰器的配置
+  addDecoratorsLegacy(),
 );

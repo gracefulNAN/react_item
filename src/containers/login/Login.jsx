@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, Icon, Input, Button } from 'antd';
+// 把 UI 组件包装成容器组件
+import { connect } from 'react-redux'
 
 import logo from './images/logo.png';
 import './login.less';
@@ -85,4 +87,4 @@ class Login extends Component {
     )
   }
 }
-export default Form.create()(Login);
+export default connect()(Form.create()(Login));

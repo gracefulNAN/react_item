@@ -25,7 +25,7 @@ export default function user(state=initUser,action){
         token,
         hasLogin: true
       }
-    case SAVE_USER_TOKEN:
+    case REMOVE_USER_TOKEN:
       return {
         user: {}, 
         token: '',

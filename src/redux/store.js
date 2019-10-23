@@ -15,7 +15,7 @@ import {IS_DEV} from '../config';
 // 通过 createStore 方法创建的 store 是一个对象 , 并 暴露出去，让 react 获取 state
  export default createStore(
   reducer, 
-  IS_DEV? composeWithDevTools(applyMiddleware(thunk)):applyMiddleware(thunk)
+  IS_DEV ? composeWithDevTools(applyMiddleware(thunk)):applyMiddleware(thunk)
 );
 
 /* 

@@ -20,6 +20,15 @@ const saveUserToken = (user, token) => ({
   }
 });
 
+//当退出登录时，调用, 清除内存数据
+export const removeUserToken = () => {
+  // 清除local中的user和token
+  localStorage.removeItem('user_key')
+  localStorage.removeItem('token_key')
+
+  return {type: REMOVE_USER_TOKEN}
+}
+
 export function loginAsync(username, password) {
   // 返回一个异步 action 函数
 

@@ -4,7 +4,7 @@
 
 
 const initUser = 1;
-export default function user(state=initUser,action){
+export default function other(state=initUser,action){
 
   switch (action.type) {
     /* case value:

@@ -24,7 +24,6 @@ class Login extends Component {
     this.props.form.validateFields((errors, values) => {
       if (!errors) { // 验证成功发起请求
         const {username, password} = values
-        console.log(username,password);
         this.props.loginAsync(username, password);
       } else {
         

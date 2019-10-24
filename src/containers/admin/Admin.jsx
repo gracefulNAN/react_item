@@ -4,6 +4,8 @@ import {Redirect} from 'react-router-dom'
 
 import { removeUserToken } from '../../redux/action-creators/user'
 
+@connect(state => ({user: state.user.user, hasLogin: state.user.hasLogin})
+,{removeUserToken})
 class Admin extends Component {
 
   logout = () =>{
@@ -24,7 +26,8 @@ class Admin extends Component {
     )
   }
 }
-export default connect(
+/* export default connect(
   state => ({user: state.user.user, hasLogin: state.user.hasLogin})
   ,{removeUserToken}
-)(Admin);
+)(Admin); */
+export default Admin;

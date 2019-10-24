@@ -5,9 +5,12 @@
 // const initUser = 1;
 
 import { SAVE_USER_TOKEN, REMOVE_USER_TOKEN} from '../action_types'
+import storage from '../../utils/storage'
 
-const _user = JSON.parse(localStorage.getItem('user_key') || '{}');
-const _token = localStorage.getItem('token_key');
+// const _user = JSON.parse(localStorage.getItem('user_key') || '{}');
+// const _token = localStorage.getItem('token_key');
+const _user = storage.get(storage.KEYS.USER_KEY,{});
+const _token = storage.get(storage.KEYS.TOKEN_KEY,'');
  // 设置初始值
 const initUser = {
   user: _user,

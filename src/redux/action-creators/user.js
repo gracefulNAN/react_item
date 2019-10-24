@@ -10,6 +10,7 @@ import {
 } from 'antd'
 
 import { SAVE_USER_TOKEN, REMOVE_USER_TOKEN } from '../action_types'
+import storage from '../../utils/storage'
 
 // 保存 user 和 token 的同步 action creator, 返回一个 包含 type 和 data 的对象
 const saveUserToken = (user, token) => ({
@@ -23,8 +24,10 @@ const saveUserToken = (user, token) => ({
 //当退出登录时，调用, 清除内存数据
 export const removeUserToken = () => {
   // 清除local中的user和token
-  localStorage.removeItem('user_key')
-  localStorage.removeItem('token_key')
+  // localStorage.removeItem('user_key')
+  // localStorage.removeItem('token_key')
+  storage.remove(storage.KEYS.USER_KEY);
+  storage.remove(storage.KEYS.TOKEN_KEY);
 
   return {type: REMOVE_USER_TOKEN}
 }
@@ -44,8 +47,8 @@ export function loginAsync(username, password) {
       // 获取 响应数据中的 user 和 token
       const {user, token} = result.data;
       // 保存方法：localStorage.setItem(key，value),
-      localStorage.setItem('user_key',JSON.stringify(user));
-      localStorage.setItem('token_key', token);
+      storage.set(storage.KEYS.USER_KEY,user);
+      localStorage.setItem(storage.KEYS.TOKEN_KEY, token);
 
       // 分发保存user和token信息的同步action
       dispath(saveUserToken(user, token));

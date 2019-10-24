@@ -17,3 +17,16 @@ export const reqLogin = ({
   })
 
 }
+
+// 获取列表信息，用于验证 token 
+export const reqUsers = () => {
+  return ajax({
+    url:'/manage/user/list',
+    method:'GET'
+  });
+}
+
+/* 
+ajax('/manage/user/list')
+ajax.get('/manage/user/list')
+*/

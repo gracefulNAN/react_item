@@ -3,19 +3,21 @@ import { Form, Icon, Input, Button } from 'antd';
 // 把 UI 组件包装成容器组件
 import { connect } from 'react-redux'
 // 跳转页面
-import {Redirect} from 'react-router-dom'
+// import {Redirect} from 'react-router-dom'
 
 import logo from './images/logo.png';
-import './login.less';
+import './index.less';
 import {loginAsync} from '../../redux/action-creators/user'
+import WithCheckLogin from '../with-check-login'
 
 const { Item } = Form;
 
 @connect(
-  state => ({hasLogin: state.user.hasLogin})
+  state => ({}) //hasLogin: state.user.hasLogin
 ,{loginAsync}
 )
 @Form.create()
+@WithCheckLogin
 class Login extends Component {
 
   handleSubmit = (event) => {
@@ -48,10 +50,10 @@ class Login extends Component {
 
   render() {
 
-    const {hasLogin} = this.props;
+    /* const {hasLogin} = this.props;
     if (hasLogin) { // 如果已经登陆, 自动跳转到admin界面
       return <Redirect to="/"/>
-    }
+    } */
 
     const { getFieldDecorator } = this.props.form;
     return (

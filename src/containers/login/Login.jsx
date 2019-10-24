@@ -11,7 +11,11 @@ import {loginAsync} from '../../redux/action-creators/user'
 
 const { Item } = Form;
 
-
+@connect(
+  state => ({hasLogin: state.user.hasLogin})
+,{loginAsync}
+)
+@Form.create()
 class Login extends Component {
 
   handleSubmit = (event) => {
@@ -98,8 +102,8 @@ class Login extends Component {
     )
   }
 }
-export default connect(
+/* export default connect(
   state => ({hasLogin: state.user.hasLogin})
   ,{loginAsync}
-  )(Form.create()(Login));
-// export default Login;
+  )(Form.create()(Login)); */
+export default Login;

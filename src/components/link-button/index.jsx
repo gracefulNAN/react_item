@@ -3,12 +3,11 @@
 */
 
 import React,{ Component } from "react";
+import './index.less'
 
 class LinkButton extends Component{
   render(){
-    return (
-      <div>LinkButton</div>
-    )
+    return <button className='linkBtn' {...this.props}/>
   }
 }
 export default LinkButton;

@@ -16,7 +16,7 @@ import { setHeaderTitle } from '../../../redux/action-creators/header-title'
 const { SubMenu, Item } = Menu;
 
 @connect(
-  (state) =>({ headerTitle:state.headerTitle }),
+  (state) => ({ headerTitle: state.headerTitle }),
   { setHeaderTitle }
 )
 @withRouter
@@ -79,6 +79,12 @@ class LeftNav extends Component {
           </Item>
         )
       } else {
+
+        // 判断item的children有没有一个child的key与path一致
+        if (item.children.some( item => item.key === path )) {
+          this.openKey = item.key;
+        }
+
         pre.push(
           <SubMenu
             key={item.key}
@@ -104,6 +110,10 @@ class LeftNav extends Component {
 
     // 调用 getMenuNodes ，生成标签数组；
     const menuNodes = this.getMenuNodes(menuList);
+    // 获取 路径
+    const selectedKey = this.props.location.pathname;
+    // 获取 key
+    const openKey = this.openKey;
 
     return (
       <div className='left_nav'>
@@ -114,8 +124,8 @@ class LeftNav extends Component {
         <Menu
           mode="inline"
           theme="dark"
-        // selectedKeys={[selectedKey]}
-        // defaultOpenKeys={[openKey]}  // 初始展开的 SubMenu 菜单项 key 数组
+        selectedKeys={[selectedKey]}  // 当前选中的菜单项 key 数组
+        defaultOpenKeys={[openKey]}  // 初始展开的 SubMenu 菜单项 key 数组
         >
           {menuNodes}
 

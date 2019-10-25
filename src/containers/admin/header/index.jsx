@@ -90,8 +90,6 @@ class className extends Component {
     const { currentTime, weather, dayPictureUrl, isFullScreen } = this.state;
     // 获取用户名
     const { username, headerTitle } = this.props
-    // 获取路径
-    const path = this.props.location.pathname;
 
     return (
       <div className='header'>

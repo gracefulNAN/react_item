@@ -57,6 +57,9 @@ export const reqWeather = (city) => {
   });
 }
 
+// 获取所有分类的列表
+export const reqCategorys = () => ajax('/manage/category/list')
+
 
 /* 
 ajax('/manage/user/list')

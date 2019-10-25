@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 // 跳转页面
 // import {Redirect} from 'react-router-dom'
 
-import logo from './images/logo.png';
+import logo from '../../assets/images/logo.png';
 import './index.less';
 import {loginAsync} from '../../redux/action-creators/user'
 import WithCheckLogin from '../with-check-login'

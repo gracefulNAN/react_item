@@ -18,7 +18,10 @@ import { reqWeather } from '../../../api';
 import './index.less'
 
 @connect(
-  state => ({ username: state.user.user.username }),
+  state => ({ 
+    username: state.user.user.username,
+    headerTitle:state.headerTitle
+  }),
   { removeUserToken }
 )
 @withRouter
@@ -86,7 +89,7 @@ class className extends Component {
     // 获取时间
     const { currentTime, weather, dayPictureUrl, isFullScreen } = this.state;
     // 获取用户名
-    const { username } = this.props
+    const { username, headerTitle } = this.props
     // 获取路径
     const path = this.props.location.pathname;
 
@@ -100,7 +103,7 @@ class className extends Component {
           <LinkButton onClick={this.LinkBtn}>退出</LinkButton>
         </div>
         <div className='header-bottom'>
-          <div className='header-bottom-left'>{path}</div>
+          <div className='header-bottom-left'>{headerTitle}</div>
           <div className='header-bottom-right'>
             <span>{currentTime}</span>
             <img src={dayPictureUrl} alt="weather" />

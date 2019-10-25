@@ -5,12 +5,12 @@
 import { combineReducers } from 'redux'
 
 import user from './user';
-import other from './other'
+import headerTitle from './header-title'
 
 // combineReducers 是一个函数，传入一个 reducer 函数集合，
 export default combineReducers({
   user,
-  other
+  headerTitle
 });
 
 /* 

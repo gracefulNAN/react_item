@@ -8,23 +8,13 @@ import {
   Button,
   Icon,
   Table,
-  message
-} from 'antd'  //  Modal,
+  Modal,
+  message,
+  Input
+} from 'antd'
 
 import { reqCategorys } from '../../api'
 import LinkButton from '../../components/link-button'
-
-const columns = [
-  {
-    title: '分类名称',
-    dataIndex: 'name',
-  },
-  {
-    width: 300,
-    title: '操作',
-    render: () => <LinkButton>修改分类</LinkButton>,
-  }
-];
 
 
 class Category extends Component {
@@ -32,7 +22,50 @@ class Category extends Component {
   state = {
     categorys: [],
     loading: false, // 是否显示loading
+    visible: false,
+    visible123: false,
   }
+
+  columns = [
+    {
+      title: '分类名称',
+      dataIndex: 'name',
+    },
+    {
+      width: 300,
+      title: '操作',
+      render: () => <LinkButton onClick={this.showModal123}>修改分类</LinkButton>,
+    }
+  ];
+
+
+
+// 添加
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  hideModal = () => {
+    this.setState({
+      visible: false,
+    });
+  };
+
+// 修改
+  showModal123 = () => {
+    this.setState({
+      visible123: true,
+    });
+  };
+
+  hideModal123 = () => {
+    this.setState({
+      visible123: false,
+    });
+  };
+
 
   getCategorys = async () => {
 
@@ -62,17 +95,17 @@ class Category extends Component {
   }
 
   // 调用getCategorys
-  componentDidMount () {
+  componentDidMount() {
     this.getCategorys()
   }
 
   render() {
 
-    const {categorys, loading} = this.state
+    const { categorys, loading } = this.state
 
     // 右上角界面
     const extra = (
-      <Button type="primary">
+      <Button type="primary" onClick={this.showModal}>
         <Icon type="plus"></Icon>
         添加
       </Button>
@@ -84,10 +117,30 @@ class Category extends Component {
           bordered
           loading={loading}
           dataSource={categorys}
-          columns={columns}
+          columns={this.columns}
           rowKey="_id"
           pagination={{ pageSize: 5, showQuickJumper: true }}
         />
+        <Modal
+          title="添加分类"
+          visible={this.state.visible}
+          onOk={this.hideModal}
+          onCancel={this.hideModal}
+          okText="确认"
+          cancelText="取消"
+        >
+          <Input placeholder ='请输入分类名称'/>
+        </Modal>
+        <Modal
+          title="添加分类"
+          visible={this.state.visible123}
+          onOk={this.hideModal123}
+          onCancel={this.hideModal123}
+          okText="确认"
+          cancelText="取消"
+        >
+          <Input placeholder ='请输入分类名称'/>
+        </Modal>
       </Card>
     )
   }

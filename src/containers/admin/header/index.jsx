@@ -40,10 +40,7 @@ class className extends Component {
       title: '哦~！您真的要离开吗？',
       okText: '悄悄地走',
       cancelText: '再呆会儿',
-      onOk: () => {
-        this.props.removeUserToken()
-        Modal.destroyAll();
-      },
+      onOk: () => {this.props.removeUserToken()},
       onCancel: () => { }
     });
   }

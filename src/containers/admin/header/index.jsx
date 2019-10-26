@@ -18,9 +18,9 @@ import { reqWeather } from '../../../api';
 import './index.less'
 
 @connect(
-  state => ({ 
+  state => ({
     username: state.user.user.username,
-    headerTitle:state.headerTitle
+    headerTitle: state.headerTitle
   }),
   { removeUserToken }
 )
@@ -39,11 +39,16 @@ class className extends Component {
     Modal.confirm({
       title: '哦~！您真的要离开吗？',
       okText: '悄悄地走',
-      cancelText: '我不走',
-      onOk: () => this.props.removeUserToken(),
+      cancelText: '再呆会儿',
+      onOk: () => {
+        this.props.removeUserToken()
+        Modal.destroyAll();
+      },
       onCancel: () => { }
     });
   }
+
+
 
   // 天气
   showWeather = async () => {
@@ -72,7 +77,7 @@ class className extends Component {
     this.showWeather();
 
     // screenfull 绑定 onchange
-    screenfull.onchange(()=>{
+    screenfull.onchange(() => {
       this.setState({
         isFullScreen: !this.state.isFullScreen
       })

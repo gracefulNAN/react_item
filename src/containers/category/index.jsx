@@ -8,9 +8,8 @@ import {
   Button,
   Icon,
   Table,
-  Modal,
   message
-} from 'antd'
+} from 'antd'  //  Modal,
 
 import { reqCategorys } from '../../api'
 import LinkButton from '../../components/link-button'
@@ -80,7 +79,7 @@ class Category extends Component {
     )
 
     return (
-      <Card extra={<a href="#">More</a>}>
+      <Card extra={extra}>
         <Table
           bordered
           loading={loading}

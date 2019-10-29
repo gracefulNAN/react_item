@@ -60,8 +60,17 @@ export const reqWeather = (city) => {
 // 获取所有分类的列表
 export const reqCategorys = () => ajax('/manage/category/list')
 
-
 /* 
 ajax('/manage/user/list')
 ajax.get('/manage/user/list')
 */
+
+// 发 添加分类请求
+export const reqAddCategory = (categoryName)=> ajax.post('/manage/category/add', {categoryName})
+
+// 发 修改分类请求
+export const reqUpdateCategory = ({categoryId, categoryName})=> ajax({
+  url:'/manage/category/update',
+  method:'POST',
+  data:{categoryId, categoryName}
+});

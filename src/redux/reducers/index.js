@@ -6,11 +6,13 @@ import { combineReducers } from 'redux'
 
 import user from './user';
 import headerTitle from './header-title'
+import categorys from './categorys'
 
 // combineReducers 是一个函数，传入一个 reducer 函数集合，
 export default combineReducers({
   user,
-  headerTitle
+  headerTitle,
+  categorys
 });
 
 /* 

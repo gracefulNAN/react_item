@@ -12,6 +12,7 @@ import reducer from './reducers';
 // 引入 环境模块的布尔值
 import {IS_DEV} from '../config';
 
+
 // 通过 createStore 方法创建的 store 是一个对象 , 并 暴露出去，让 react 获取 state
  export default createStore(
   reducer, 

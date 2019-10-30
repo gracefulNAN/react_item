@@ -119,3 +119,19 @@ export const reqUpdateProductStatus = (productId, status) => ajax({
     status
   }
 })
+
+// 根据商品 id 获取商品
+export const reqProductById = (id) => ajax({
+url:'/manage/product/info',
+params:{
+  productId:id
+}
+})
+
+// 根据分类 id 获取分类
+export const reqCategory = (id) => ajax({
+  url:'/manage/category/info',
+  params: {
+    categoryId:id
+  }
+})

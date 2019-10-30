@@ -15,6 +15,7 @@ import AdminHeader from './header';
 import Home from '../../components/home'
 import Category from '../category'
 import Product from '../product'
+import detail from '../product/detail'
 import Role from '../role'
 import User from '../user'
 import Line from '../../components/charts/line'
@@ -37,7 +38,8 @@ class Admin extends Component {
             <Switch>
               <Route path="/home" component={Home}/>
               <Route path="/category" component={Category}/>
-              <Route path="/product" component={Product}/>
+              <Route path="/product" component={Product} exact/>
+              <Route path="/product/detail/:id" component={detail} exact/>
               <Route path="/role" component={Role}/>
               <Route path="/user" component={User}/>
               <Route path="/charts/line" component={Line}/>

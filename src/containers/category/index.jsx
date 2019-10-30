@@ -232,7 +232,7 @@ class Category extends Component {
 
         // 发 修改分类的请求，并接收返回的数据
         const msg = await this.props.updateCategoryAsync({ categoryName,categoryId });
-
+        
         // 重置 回复初始值
         this.form.resetFields();
 
